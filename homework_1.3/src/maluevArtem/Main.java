@@ -7,7 +7,7 @@ import java.util.concurrent.ForkJoinPool;
 
 /**
  * При массиве маленького размера многотпоточное решение задачи происходит быстрее или за то же время, что и однопоточное решение.
- * При большом размере массива время решения задачи многопоточным способом сильно увеличивается, по сравнению с однопоточным.
+ * При большом размере массива время решения задачи многопоточным способом сильно меньше, по сравнению с однопоточным.
  */
 
 public class Main {
@@ -48,10 +48,12 @@ public class Main {
 
     public static void singleThreadedSolution(int[] array) {
         System.out.println("\nОднопоточное решение");
-        int sumElements = 0;
+        /*int sumElements = 0;
         for (int i : array) {
             sumElements += i;
-        }
+        }*/
+        ArraySumTask arraySumTask = new ArraySumTask(array);
+        int sumElements = arraySumTask.compute();
         int arithmeticMean = sumElements / array.length;
         System.out.println("Сумма элементов массива: " + sumElements);
         System.out.println("Среднее арефметическое элементов массива: " + arithmeticMean);

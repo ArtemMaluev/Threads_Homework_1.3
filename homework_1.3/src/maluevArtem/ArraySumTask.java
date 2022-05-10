@@ -18,8 +18,7 @@ public class ArraySumTask extends RecursiveTask<Integer> {
         }
         ArraySumTask task1 = new ArraySumTask(Arrays.copyOfRange(array, 0, array.length / 2));
         ArraySumTask task2 = new ArraySumTask(Arrays.copyOfRange(array, array.length / 2, array.length));
-        task1.fork();
-        task2.fork();
+        invokeAll(task1, task2);
         return task1.join() + task2.join();
     }
 }
